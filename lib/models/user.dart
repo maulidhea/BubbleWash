@@ -3,7 +3,7 @@
 // ===============================================================
 
 abstract class AppUser {
-  final String _email;                // ✅ Encapsulation: private field
+  final String _email;                
   AppUser(this._email);
 
   String get email => _email;          // getter agar email tetap read-only
@@ -22,7 +22,7 @@ class MemberUser extends AppUser {
   void login() => print("Member $email login dengan verifikasi tambahan");
 
   @override
-  String greeting() => "Halo, $name 👋";   // ✅ dipendekkan
+  String greeting() => "Halo, $name 👋";  
 }
 
 // ---------------------- Admin User -----------------------------
@@ -33,7 +33,7 @@ class AdminUser extends AppUser {
   void login() => print("Admin $email login dengan hak akses penuh");
 
   @override
-  String greeting() => "Halo Admin 👋";    // ✅ lebih singkat
+  String greeting() => "Halo Admin 👋";    
 }
 
 // ---------------------- Guest User -----------------------------
@@ -46,5 +46,5 @@ class GuestUser extends AppUser {
   void login() => print("Guest $email login tanpa autentikasi");
 
   @override
-  String greeting() => "Halo, $name 👋";   // ✅ singkat
+  String greeting() => "Halo, $name 👋";   
 }

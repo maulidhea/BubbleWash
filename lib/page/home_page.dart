@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:custom_rating_bar/custom_rating_bar.dart';
 
 // ===== Model =====
 import '../models/user.dart';
@@ -19,7 +20,7 @@ class HomePage extends StatefulWidget {
   final String email;
   final AppUser user;
   const HomePage({Key? key, required this.email, required this.user})
-      : super(key: key);
+    : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,12 +36,24 @@ class _HomePageState extends State<HomePage> {
   final List<String> _categories = ['Semua', 'Express', 'Reguler', 'Premium'];
 
   final List<LaundryService> services = [
-    KiloanService("Cuci Kiloan", 15000, "2 hari",
-        "Cuci kiloan dengan deterjen premium & pewangi lembut."),
-    SetrikaService("Setrika Saja", 7000, "1 hari",
-        "Setrika uap agar pakaian wangi dan licin rapi."),
-    DryCleaningService("Dry Cleaning", 25000, "3 hari",
-        "Dry cleaning premium untuk pakaian berbahan khusus."),
+    KiloanService(
+      "Cuci Kiloan",
+      15000,
+      "2 hari",
+      "Cuci kiloan dengan deterjen premium & pewangi lembut.",
+    ),
+    SetrikaService(
+      "Setrika Saja",
+      7000,
+      "1 hari",
+      "Setrika uap agar pakaian wangi dan licin rapi.",
+    ),
+    DryCleaningService(
+      "Dry Cleaning",
+      25000,
+      "3 hari",
+      "Dry cleaning premium untuk pakaian berbahan khusus.",
+    ),
   ];
 
   void _addToCart(LaundryService item) {
@@ -61,7 +74,8 @@ class _HomePageState extends State<HomePage> {
         email: widget.email,
         telepon: '08123456789',
         alamat: 'Jl. Contoh No.1',
-        memberSejak: '2024', namaPengguna: '',
+        memberSejak: '2024',
+        namaPengguna: '',
       ),
     ];
 
@@ -78,9 +92,13 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.local_laundry_service), label: 'Service'),
+            icon: Icon(Icons.local_laundry_service),
+            label: 'Service',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: 'Orders'),
+            icon: Icon(Icons.shopping_bag),
+            label: 'Orders',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
@@ -133,8 +151,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>
-                          CheckoutPage(cartItems: globalCart.items),
+                      builder: (_) => CheckoutPage(cartItems: globalCart.items),
                     ),
                   );
                 },
@@ -151,8 +168,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Text(
                       '${globalCart.totalQty}',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ),
@@ -218,8 +234,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Row(
                     children: [
-                      const FaIcon(FontAwesomeIcons.tags,
-                          size: 40, color: Colors.white),
+                      const FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 40,
+                        color: Colors.white,
+                      ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Text(
@@ -407,7 +426,11 @@ class _ServiceCard extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
-            BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(2, 4))
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(2, 4),
+            ),
           ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -448,17 +471,11 @@ class _ReasonTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       elevation: 4,
       color: Colors.white.withOpacity(0.9),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: Colors.pinkAccent,
-          child: FaIcon(
-            icon,
-            color: Colors.white,
-            size: 20,
-          ),
+          child: FaIcon(icon, color: Colors.white, size: 20),
         ),
         title: Text(
           text,
@@ -501,11 +518,7 @@ class _TestimonialCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white.withOpacity(0.3)),
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 4,
-            offset: Offset(2, 4),
-          ),
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(2, 4)),
         ],
       ),
       child: Row(
@@ -530,15 +543,11 @@ class _TestimonialCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Row(
-                  children: List.generate(
-                    rating,
-                    (index) => const Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                      size: 18,
-                    ),
-                  ),
+                RatingBar.readOnly(
+                  filledIcon: Icons.star,
+                  emptyIcon: Icons.star_border,
+                  initialRating: 4,
+                  maxRating: 5,
                 ),
                 const SizedBox(height: 6),
                 Text(

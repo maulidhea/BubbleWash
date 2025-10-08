@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,14 +27,18 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _anim = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1400));
+      vsync: this,
+      duration: const Duration(milliseconds: 1400),
+    );
+
     _scale = Tween<double>(begin: 0.8, end: 1.02)
         .chain(CurveTween(curve: Curves.elasticOut))
         .animate(_anim);
+
     _anim.forward();
 
-    // auto navigate after 1.6s
-    Future.delayed(const Duration(milliseconds: 1600), () {
+    // ⏳ Auto navigate after 3 seconds
+    Future.delayed(const Duration(milliseconds: 3000), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
@@ -101,7 +106,6 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 const SizedBox(height: 8),
                 const Text('Cepat • Bersih • Ramah Lingkungan'),
-                // >>> Tambahkan nama di sini <<<
                 const SizedBox(height: 4),
                 const Text(
                   'hanna maulidhea_091',
@@ -111,6 +115,10 @@ class _SplashScreenState extends State<SplashScreen>
                     color: Colors.white,
                   ),
                 ),
+                 LoadingAnimationWidget.hexagonDots(
+                      color: Colors.white,
+                      size: 30,
+                    ),
               ],
             ),
           ),
@@ -124,6 +132,7 @@ class _SplashScreenState extends State<SplashScreen>
 class LoginLauncher extends StatelessWidget {
   final VoidCallback toggleTheme;
   final ThemeMode themeMode;
+
   const LoginLauncher({
     super.key,
     required this.toggleTheme,

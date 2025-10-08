@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'forgotpassword_page.dart';
 import 'register_page.dart';
 import 'home_page.dart';
-import '../models/user.dart';    
+import '../models/user.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback? toggleTheme;
@@ -37,22 +37,22 @@ class _LoginPageState extends State<LoginPage> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login berhasil!')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Login berhasil!')));
 
       // Buat instance model OOP
       final user = MemberUser(
         _emailC.text.trim(),
-        'Pengguna BubbleWash',   // contoh nama
-        '2023-01-01',           // contoh tanggal member sejak
+        'Pengguna BubbleWash', // contoh nama
+        '2023-01-01', // contoh tanggal member sejak
       );
 
       // Arahkan ke HomePage dengan object User
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 600),
-          pageBuilder: (_, __, ___) => HomePage(user: user, email: '',),
+          pageBuilder: (_, __, ___) => HomePage(user: user, email: ''),
           transitionsBuilder: (_, anim, __, child) {
             final t = CurvedAnimation(parent: anim, curve: Curves.easeOut);
             return SlideTransition(
@@ -69,13 +69,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void goToRegister() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const RegisterPage()));
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const RegisterPage()));
   }
 
   void goToForgot() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const ForgotPasswordPage()));
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const ForgotPasswordPage()));
   }
 
   @override
@@ -119,15 +121,20 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 26, vertical: 28),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 26,
+                    vertical: 28,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CircleAvatar(
                         radius: 72,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/logo.png", fit: BoxFit.contain),
+                        child: Image.asset(
+                          "assets/logo.png",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       ShaderMask(
@@ -190,7 +197,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               validator: (v) {
                                 final value = v ?? '';
-                                if (value.isEmpty) return 'Password wajib diisi';
+                                if (value.isEmpty)
+                                  return 'Password wajib diisi';
                                 if (value.length < 6) {
                                   return 'Minimal 6 karakter';
                                 }
@@ -210,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                                 TextButton(
                                   onPressed: goToForgot,
                                   child: const Text('Lupa password?'),
-                                )
+                                ),
                               ],
                             ),
                           ],
@@ -241,7 +249,8 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text('Google login (demo only)')),
+                                    content: Text('Google login (demo only)'),
+                                  ),
                                 );
                               },
                               icon: const Icon(Icons.g_mobiledata),
@@ -264,7 +273,7 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
-                    ],
+                    ]
                   ),
                 ),
               ),
