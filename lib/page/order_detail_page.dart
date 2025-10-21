@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/laundry_order.dart';
+import '/models/laundry_order.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderDetailPage extends StatelessWidget {

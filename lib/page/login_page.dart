@@ -1,5 +1,6 @@
 /// lib/pages/login_page.dart
 import 'package:flutter/material.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 import 'forgotpassword_page.dart';
 import 'register_page.dart';
 import 'home_page.dart';
@@ -247,11 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             child: OutlinedButton.icon(
                               onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Google login (demo only)'),
-                                  ),
-                                );
+                               SignInButton(Buttons.google, onPressed: () {});
                               },
                               icon: const Icon(Icons.g_mobiledata),
                               label: const Text('Masuk dengan Google'),
@@ -272,6 +269,28 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ],
                         ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SignInButton(
+                            Buttons.facebook,
+                            mini: true,
+                            onPressed: () {},
+                          ),
+                          SizedBox(width: 10),
+                          SignInButton(
+                            Buttons.gitHub,
+                            mini: true,
+                            onPressed: () {},
+                          ),
+                          SizedBox(width: 10),
+                          SignInButton(
+                            Buttons.twitter,
+                            mini: true,
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
                     ]
                   ),

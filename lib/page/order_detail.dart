@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ===== MODEL =====
-import '../models/order_base.dart';   // abstract class BaseOrder
+import '../models/order_base.dart';  // class BaseOrder 
 import '../models/laundry_order.dart';  // class LaundryOrder extends BaseOrder
 import '../models/order_item.dart';   // class OrderItem
 

@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
         telepon: '08123456789',
         alamat: 'Jl. Contoh No.1',
         memberSejak: '2024',
-        namaPengguna: '',
+        namaPengguna: '${widget.user.email}',
       ),
     ];
 
