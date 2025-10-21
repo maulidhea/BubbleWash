@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             child: OutlinedButton.icon(
                               onPressed: () {
-                               SignInButton(Buttons.google, onPressed: () {});
+                                SignInButton(Buttons.google, onPressed: () {});
                               },
                               icon: const Icon(Icons.g_mobiledata),
                               label: const Text('Masuk dengan Google'),
@@ -292,7 +292,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                    ]
+                    ],
                   ),
                 ),
               ),
