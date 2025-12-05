@@ -248,7 +248,12 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             child: OutlinedButton.icon(
                               onPressed: () {
-                                SignInButton(Buttons.google, onPressed: () {});
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Fitur masuk dengan Google belum tersedia'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
                               },
                               icon: const Icon(Icons.g_mobiledata),
                               label: const Text('Masuk dengan Google'),
@@ -276,19 +281,40 @@ class _LoginPageState extends State<LoginPage> {
                           SignInButton(
                             Buttons.facebook,
                             mini: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Fitur masuk dengan Facebook belum tersedia'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            },
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           SignInButton(
                             Buttons.gitHub,
                             mini: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Fitur masuk dengan GitHub belum tersedia'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            },
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           SignInButton(
                             Buttons.twitter,
                             mini: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Fitur masuk dengan Twitter belum tersedia'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),

@@ -255,7 +255,7 @@ class ServiceDetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -299,12 +299,13 @@ class ServiceDetailPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _infoTile("Harga", item.costLabel, Colors.pink.shade400),
-                _infoTile("Estimasi", item.duration, pastelBlue),
+                Expanded(child: _infoTile("Harga", item.costLabel, Colors.pink.shade400)),
+                const SizedBox(width: 16),
+                Expanded(child: _infoTile("Estimasi", item.duration, pastelBlue)),
               ],
             ),
 
-            const Spacer(),
+            const SizedBox(height: 40),
 
             // --- Tombol CTA gradient ---
             SizedBox(
@@ -357,7 +358,6 @@ class ServiceDetailPage extends StatelessWidget {
 
   Widget _infoTile(String title, String value, Color color) {
     return Container(
-      width: 140,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
