@@ -123,49 +123,51 @@ class ProfilePage extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: ListView(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
-          children: [
-            const SizedBox(height: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
 
-            // ===== Foto profil =====
-            CircleAvatar(
-              radius: 55,
-              backgroundColor: Colors.pink.shade200,
-              child: const Icon(Icons.person, size: 65, color: Colors.white),
-            ),
-            const SizedBox(height: 12),
+              // ===== Foto profil =====
+              CircleAvatar(
+                radius: 55,
+                backgroundColor: Colors.pink.shade200,
+                child: const Icon(Icons.person, size: 65, color: Colors.white),
+              ),
+              const SizedBox(height: 12),
 
-            // ===== Nama Pengguna (asli) =====
-            Center(
-              child: Text(
-                member.name, // ✅ tampilkan nama dari MemberUser
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey.shade800,
+              // ===== Nama Pengguna (asli) =====
+              Center(
+                child: Text(
+                  member.name, // ✅ tampilkan nama dari MemberUser
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
-            ),
-            // ===== Email pengguna =====
-            Center(
-              child: Text(
-                email,
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.blueGrey.shade600,
+              // ===== Email pengguna =====
+              Center(
+                child: Text(
+                  email,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey[700],
+                  ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // ===== Info lainnya =====
-            _infoTile(Icons.phone, "Telepon", telepon),
-            _infoTile(Icons.home, "Alamat", alamat),
-            _infoTile(Icons.calendar_today, "Member Sejak", memberSejak),
-          ],
+              // ===== Info lainnya =====
+              _infoTile(Icons.phone, "Telepon", telepon),
+              _infoTile(Icons.home, "Alamat", alamat),
+              _infoTile(Icons.calendar_today, "Member Sejak", memberSejak),
+            ],
+          ),
         ),
       ),
     );

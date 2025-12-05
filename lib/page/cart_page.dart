@@ -114,11 +114,13 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
             )
-          : Column(
-              children: [
-                // ===== List item keranjang =====
-                Expanded(
-                  child: ListView.builder(
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  // ===== List item keranjang =====
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(16),
                     itemCount: _items.length,
                     itemBuilder: (context, index) {
@@ -160,14 +162,14 @@ class _CartPageState extends State<CartPage> {
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
-                              color: const Color(0xFF5A6C8A),
+                              color: Colors.black87,
                             ),
                           ),
                           subtitle: Text(
                             "Rp ${item["price"]} / kg",
                             style: GoogleFonts.poppins(
                               fontSize: 15,
-                              color: const Color(0xFF9AA5B1),
+                              color: Colors.grey[700],
                             ),
                           ),
                           trailing: IconButton(
@@ -176,86 +178,90 @@ class _CartPageState extends State<CartPage> {
                               setState(() {
                                 _items.removeAt(index);
                               });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('${item["name"]} dihapus dari keranjang')),
+                              );
                             },
                           ),
                         ),
                       );
                     },
                   ),
-                ),
 
-                // ===== Total & Tombol Checkout =====
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(24)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: pastelBlue.withOpacity(0.15),
-                        blurRadius: 8,
-                        offset: const Offset(0, -2),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF5A6C8A),
-                            ),
-                          ),
-                          Text(
-                            "Rp $total",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: pastelBlue,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 14),
-                      ElevatedButton.icon(
-                        icon: const Icon(Icons.payment, color: Colors.white),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => CheckoutPage(cartItems: _items),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: pastelBlue,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          elevation: 4,
+                  // ===== Total & Tombol Checkout =====
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(24)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: pastelBlue.withOpacity(0.15),
+                          blurRadius: 8,
+                          offset: const Offset(0, -2),
                         ),
-                        label: Text(
-                          "Lanjut ke Checkout",
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Total",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            Text(
+                              "Rp $total",
+                              style: GoogleFonts.poppins(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: pastelBlue,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 14),
+                        ElevatedButton.icon(
+                          icon: const Icon(Icons.payment, color: Colors.white),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => CheckoutPage(cartItems: _items),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: pastelBlue,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 4,
+                          ),
+                          label: Text(
+                            "Lanjut ke Checkout",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
     );
   }

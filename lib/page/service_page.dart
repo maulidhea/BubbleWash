@@ -127,73 +127,83 @@ class _ServicePageState extends State<ServicePage> {
           ),
         ],
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(20),
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-          return InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ServiceDetailPage(
-                  item: item,
-                  onAdd: () => _addToCart(item),
-                ),
-              ),
-            ),
-            child: Card(
-              color: Colors.white,
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: pastelPink.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.all(12),
-                      child: Icon(item.icon,
-                          color: const Color(0xFF3A8DDE), size: 32),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item.title,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF3A8DDE))),
-                          const SizedBox(height: 4),
-                          Text(item.details,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 14, color: Colors.black87)),
-                          const SizedBox(height: 8),
-                          Text('Harga: ${item.costLabel}',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.pink)),
-                        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, __) => const SizedBox(height: 16),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(20),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ServiceDetailPage(
+                          item: item,
+                          onAdd: () => _addToCart(item),
+                        ),
                       ),
                     ),
-                    const Icon(Icons.arrow_forward_ios,
-                        size: 18, color: Colors.grey),
-                  ],
-                ),
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: pastelPink.withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              padding: const EdgeInsets.all(12),
+                              child: Icon(item.icon,
+                                  color: const Color(0xFF3A8DDE), size: 32),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(item.title,
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black87)),
+                                  const SizedBox(height: 4),
+                                  Text(item.details,
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14, color: Colors.grey[700])),
+                                  const SizedBox(height: 8),
+                                  Text('Harga: ${item.costLabel}',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.pink[700])),
+                                ],
+                              ),
+                            ),
+                            const Icon(Icons.arrow_forward_ios,
+                                size: 18, color: Colors.grey),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-            ),
-          );
-        },
+            ],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: pastelBlue,

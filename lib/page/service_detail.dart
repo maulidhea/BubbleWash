@@ -221,7 +221,7 @@ class ServiceDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildGradientAppBar(service.name),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +233,7 @@ class ServiceDetailPage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   "Estimasi: ${service.duration}",
-                  style: GoogleFonts.poppins(fontSize: 17, color: kTextDark),
+                  style: GoogleFonts.poppins(fontSize: 17, color: Colors.black87),
                 ),
               ],
             ),
@@ -248,7 +248,7 @@ class ServiceDetailPage extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: kTextDark),
+                      color: Colors.black87),
                 ),
               ],
             ),
@@ -258,19 +258,22 @@ class ServiceDetailPage extends StatelessWidget {
               style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
-                  color: kTextDark),
+                  color: Colors.black87),
             ),
             const SizedBox(height: 8),
             Text(
               service.description,
               style: GoogleFonts.poppins(
-                  fontSize: 16, color: Colors.grey[800]),
+                  fontSize: 16, color: Colors.grey[700]),
             ),
-            const Spacer(),
+            const SizedBox(height: 40),
             _buildGradientButton(
               text: "Pesan Sekarang",
               icon: Icons.shopping_cart,
               onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Berhasil ditambahkan ke keranjang!')),
+                );
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -333,7 +336,7 @@ Widget _buildGradientButton({
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
-        padding: const EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12)),
       ),
